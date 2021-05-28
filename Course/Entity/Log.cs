@@ -12,7 +12,7 @@ namespace Course.Entity
     [Table(name: "Log")]
     public class Log : AbstractEntity
     {
-        [Column(name: "UserId", TypeName = "INTEGER")]
+        [Column(name: "User_ID", TypeName = "INTEGER")]
         public long UserID { get; set; }
 
         public virtual User User { get; set; }

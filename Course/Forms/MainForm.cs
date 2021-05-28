@@ -1,4 +1,5 @@
 ﻿using Course.Config;
+using Course.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,24 @@ namespace Course.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             WelcomeUser.Text += authContext.AuthorizedUser.Login;
+        }
+
+        private void create_test_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var newForm = CompositionRoot.Resolve<CreateTestForm>();
+            newForm.Closed += (s, args) => Show();
+            newForm.ShowDialog();
         }
     }
 }

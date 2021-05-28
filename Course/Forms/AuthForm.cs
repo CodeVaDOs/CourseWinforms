@@ -56,9 +56,7 @@ namespace Course.Forms
             };
 
             authContext.Authorize(user.First());
-            Console.WriteLine(authContext.IsAuthorized);
-            Console.WriteLine(authContext.AuthorizedUser.ID);
-            loggerContext.Info("Успішна авторизація.");
+            loggerContext.Info($"Успішна авторизація користувача: {authContext.AuthorizedUser.Login}.");
 
             Hide();
             login_button.Enabled = true;

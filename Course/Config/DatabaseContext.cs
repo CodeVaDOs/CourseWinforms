@@ -18,7 +18,6 @@ namespace Course.Config
             }, true)
         {
             _path = path;
-            Console.WriteLine("CREATE DB CONTEXT");
             Configuration.ProxyCreationEnabled = false;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,6 +30,18 @@ namespace Course.Config
                 .HasForeignKey<long>(u => u.UserID)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<Test>()
+                .HasMany<Question>(t => t.Questions)
+                .WithRequired(q => q.Test)
+                .HasForeignKey<long>(t => t.TestID)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Question>()
+                .HasMany<Answer>(q => q.Answers)
+                .WithRequired(a => a.Question)
+                .HasForeignKey<long>(q => q.QuestionID)
+                .WillCascadeOnDelete();
+
 
             Database.SetInitializer(new SqliteContextInitializer<DatabaseContext>(_path, modelBuilder));
             base.OnModelCreating(modelBuilder);
@@ -38,5 +49,8 @@ namespace Course.Config
 
         public DbSet<User> Users { get; set; }
         public DbSet<Log> Logs { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
     }
 }

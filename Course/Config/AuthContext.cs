@@ -12,8 +12,6 @@ namespace Course.Config
     {
         public AuthContext()
         {
-            Console.WriteLine("AUTH CONTEXT");
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
         }
 
         private static readonly Lazy<AuthContext> lazy =

@@ -80,12 +80,34 @@
     <Compile Include="Entity\Enum\EPriority.cs" />
     <Compile Include="Entity\Enum\ERole.cs" />
     <Compile Include="Entity\Log.cs" />
+    <Compile Include="Entity\Answer.cs" />
+    <Compile Include="Entity\Question.cs" />
+    <Compile Include="Entity\Test.cs" />
+    <Compile Include="Entity\TestResult.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Forms\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateAnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateAnswerForm.Designer.cs">
+      <DependentUpon>CreateAnswerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateTestForm.Designer.cs">
+      <DependentUpon>CreateTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateQuestionForm.Designer.cs">
+      <DependentUpon>CreateQuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +122,15 @@
     <Compile Include="Util\NinjectRegistrations.cs" />
     <EmbeddedResource Include="Forms\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateAnswerForm.resx">
+      <DependentUpon>CreateAnswerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateTestForm.resx">
+      <DependentUpon>CreateTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateQuestionForm.resx">
+      <DependentUpon>CreateQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
