@@ -16,9 +16,6 @@ namespace Course.Entity
         [Column(name: "Test_ID", TypeName = "INTEGER")]
         public long TestID { get; set; }
 
-        [Column(name: "Right_Answer_ID", TypeName = "INTEGER")]
-        public long RightAnswerID { get; set; }
-
         public virtual Test Test { get; set; }
 
         public virtual ICollection<Answer> Answers { get; set; }

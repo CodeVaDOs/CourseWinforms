@@ -23,5 +23,6 @@ namespace Course.Entity
         public ERole UserRole { get; set; }
 
         public virtual ICollection<Log> Logs { get; set; }
+        public virtual ICollection<TestResult> TestResults { get; set; }
     }
 }

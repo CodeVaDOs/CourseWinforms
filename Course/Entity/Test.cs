@@ -15,5 +15,6 @@ namespace Course.Entity
         public string Name { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<TestResult> TestResults { get; set; }
     }
 }

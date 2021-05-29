@@ -28,7 +28,7 @@ namespace Course.Forms
             InitializeComponent();
         } 
 
-        private void add_question_Click(object sender, EventArgs e)
+        private void add_question_button_Click(object sender, EventArgs e)
         {
             Hide();
             var newForm = CompositionRoot.Resolve<CreateQuestionForm>();
@@ -41,11 +41,15 @@ namespace Course.Forms
                 question.Answers = newForm.Answers;
                 question.Body = newForm.Question;
                 Questions.Add(question);
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = question.Body;
+                lvi.Tag = question;
+                questions_list_view.Items.Add(lvi);
                 newForm.Close();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void save_button_Click(object sender, EventArgs e)
         {
             if (test_name_field.Text.Length > 0)
             {
@@ -61,6 +65,11 @@ namespace Course.Forms
                 dbContext.SaveChanges();
                 Close();
             }
+        }
+
+        private void questions_list_view_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

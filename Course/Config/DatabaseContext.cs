@@ -43,6 +43,19 @@ namespace Course.Config
                 .WillCascadeOnDelete();
 
 
+            // TEST RESULTS
+            modelBuilder.Entity<Test>()
+                .HasMany<TestResult>(t => t.TestResults)
+                .WithRequired(t => t.Test)
+                .HasForeignKey<long>(t => t.TestID)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<User>()
+                .HasMany<TestResult>(u => u.TestResults)
+                .WithRequired(t => t.User)
+                .HasForeignKey<long>(t => t.UserID)
+                .WillCascadeOnDelete();
+
             Database.SetInitializer(new SqliteContextInitializer<DatabaseContext>(_path, modelBuilder));
             base.OnModelCreating(modelBuilder);
         }
@@ -52,5 +65,6 @@ namespace Course.Config
         public DbSet<Test> Tests { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<TestResult> TestResults { get; set; }
     }
 }
