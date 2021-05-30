@@ -148,5 +148,16 @@ namespace Course.Forms
                 Show();
             }
         }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var usersForm = CompositionRoot.Resolve<UsersForm>();
+            usersForm.Closed += (s, args) =>
+            {
+                Show();
+            };
+            usersForm.ShowDialog();
+        }
     }
 }

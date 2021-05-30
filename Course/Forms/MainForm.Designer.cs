@@ -33,6 +33,7 @@ namespace Course.Forms
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.count_tests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,9 +41,9 @@ namespace Course.Forms
             this.count_users = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.count_admins = new System.Windows.Forms.Label();
-            this.analyticToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test_select_button = new System.Windows.Forms.Button();
             this.test_select_view = new System.Windows.Forms.ListView();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +68,7 @@ namespace Course.Forms
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 42);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -75,9 +76,10 @@ namespace Course.Forms
             // 
             this.adminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTestToolStripMenuItem,
-            this.analyticToolStripMenuItem});
+            this.analyticToolStripMenuItem,
+            this.usersToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(174, 44);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(174, 38);
             this.adminToolStripMenuItem.Text = "Admin menu";
             this.adminToolStripMenuItem.Visible = false;
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
@@ -89,10 +91,17 @@ namespace Course.Forms
             this.createTestToolStripMenuItem.Text = "Create test";
             this.createTestToolStripMenuItem.Click += new System.EventHandler(this.createTestToolStripMenuItem_Click);
             // 
+            // analyticToolStripMenuItem
+            // 
+            this.analyticToolStripMenuItem.Name = "analyticToolStripMenuItem";
+            this.analyticToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.analyticToolStripMenuItem.Text = "Statistics";
+            this.analyticToolStripMenuItem.Click += new System.EventHandler(this.analyticToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(85, 44);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(85, 38);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // count_tests
@@ -158,13 +167,6 @@ namespace Course.Forms
             this.count_admins.Text = "0";
             this.count_admins.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // analyticToolStripMenuItem
-            // 
-            this.analyticToolStripMenuItem.Name = "analyticToolStripMenuItem";
-            this.analyticToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.analyticToolStripMenuItem.Text = "Statistics";
-            this.analyticToolStripMenuItem.Click += new System.EventHandler(this.analyticToolStripMenuItem_Click);
-            // 
             // test_select_button
             // 
             this.test_select_button.Location = new System.Drawing.Point(693, 630);
@@ -187,6 +189,13 @@ namespace Course.Forms
             this.test_select_view.TabIndex = 12;
             this.test_select_view.UseCompatibleStateImageBehavior = false;
             this.test_select_view.View = System.Windows.Forms.View.List;
+            // 
+            // usersToolStripMenuItem
+            // 
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.usersToolStripMenuItem.Text = "Users";
+            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -232,5 +241,6 @@ namespace Course.Forms
         private System.Windows.Forms.ToolStripMenuItem analyticToolStripMenuItem;
         private System.Windows.Forms.Button test_select_button;
         private System.Windows.Forms.ListView test_select_view;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
     }
 }
