@@ -40,11 +40,7 @@ namespace Course.Forms
             WelcomeUser.Text += $", {authContext.AuthorizedUser.Login}!";
             Show_Analytics();
             Show_Tests();
-
-            if (authContext.AuthorizedUser.UserRole == ERole.Admin)
-            {
-                adminToolStripMenuItem.Visible = true;
-            }
+            adminToolStripMenuItem.Visible = authContext.AuthorizedUser.UserRole == ERole.Admin;
         }
 
         private void create_test_Click(object sender, EventArgs e)
@@ -155,6 +151,7 @@ namespace Course.Forms
             var usersForm = CompositionRoot.Resolve<UsersForm>();
             usersForm.Closed += (s, args) =>
             {
+                MainForm_Load(sender, e);
                 Show();
             };
             usersForm.ShowDialog();

@@ -35,23 +35,29 @@ namespace Course.Forms
             // 
             // users_list_view
             // 
+            this.users_list_view.AllowUserToAddRows = false;
+            this.users_list_view.AllowUserToDeleteRows = false;
             this.users_list_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.users_list_view.Dock = System.Windows.Forms.DockStyle.Fill;
             this.users_list_view.Location = new System.Drawing.Point(0, 0);
+            this.users_list_view.Margin = new System.Windows.Forms.Padding(2);
             this.users_list_view.Name = "users_list_view";
+            this.users_list_view.ReadOnly = true;
             this.users_list_view.RowHeadersWidth = 82;
             this.users_list_view.RowTemplate.Height = 33;
-            this.users_list_view.Size = new System.Drawing.Size(1047, 849);
+            this.users_list_view.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.users_list_view.Size = new System.Drawing.Size(524, 441);
             this.users_list_view.TabIndex = 0;
             this.users_list_view.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.users_list_view.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.users_list_view_UserAddedRow);
+            this.users_list_view.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_list_view_CellDoubleClick);
             // 
             // UsersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 849);
+            this.ClientSize = new System.Drawing.Size(524, 441);
             this.Controls.Add(this.users_list_view);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UsersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UsersForm";
