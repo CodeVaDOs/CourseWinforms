@@ -156,5 +156,17 @@ namespace Course.Forms
             };
             usersForm.ShowDialog();
         }
+
+        private void testsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            var testsForm = CompositionRoot.Resolve<TestsForm>();
+            testsForm.Closed += (s, args) =>
+            {
+                MainForm_Load(sender, e);
+                Show();
+            };
+            testsForm.ShowDialog();
+        }
     }
 }

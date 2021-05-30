@@ -21,10 +21,10 @@ namespace Course.Forms
         DatabaseContext dbContext;
         LoggerContext logger;
 
-        public CreateTestForm(DatabaseContext _dbContext, LoggerContext _logger)
+        public CreateTestForm(DatabaseContext _dbContext)
         {
             dbContext = _dbContext;
-            logger = _logger;
+            logger = LoggerContext.GetInstance();
             InitializeComponent();
         } 
 
@@ -59,7 +59,6 @@ namespace Course.Forms
                 test.Questions = Questions;
 
                 dbContext.Tests.Add(test);
-             
 
                 logger.Info($"Успішне створення тесту: {test.Name}");
                 dbContext.SaveChanges();

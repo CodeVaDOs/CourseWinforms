@@ -38,7 +38,7 @@ namespace Course.Forms
 
         private void save_question_button_Click(object sender, EventArgs e)
         {
-            if (question_field.Text.Length > 0)
+            if (question_field.Text.Length > 0 && Answers.Any(a => a.IsRightAnswer))
             {
                 Question = question_field.Text;
                 DialogResult = DialogResult.OK;

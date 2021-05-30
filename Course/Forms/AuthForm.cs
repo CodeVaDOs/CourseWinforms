@@ -101,11 +101,17 @@ namespace Course.Forms
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
 
-            var createdUser = from u in dbContext.Users where u.Login == newUser.Login select u;
+            var createdUser = dbContext.Users.SingleOrDefault(u => u.Login == newUser.Login);
 
-            authContext.AuthorizedUser = createdUser.First();
+            if (createdUser.ID == 1)
+            {
+                createdUser.UserRole = ERole.Admin;
+                dbContext.SaveChanges();
+            }
 
-            loggerContext.Info($"Успішна реєстрація користувача: {newUser.Login}", createdUser.First());
+            authContext.AuthorizedUser = createdUser;
+
+            loggerContext.Info($"Успішна реєстрація користувача: {newUser.Login}", createdUser);
             MessageBox.Show("Ви успішно зареєструвалися.", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             register_button.Enabled = true;
 
