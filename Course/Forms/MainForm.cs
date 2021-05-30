@@ -80,6 +80,7 @@ namespace Course.Forms
         private void Show_Tests()
         {
             var tests = dbContext.Tests.Include("Questions.Answers");
+            test_select_view.Items.Clear();
             foreach (Test test in tests)
             {
                 var listItem = new ListViewItem();
@@ -117,7 +118,7 @@ namespace Course.Forms
                             var rightAnswers = from a in q.Answers where a.IsRightAnswer == true select a;
                             var userRightAnswers = from a in testingForm.UserAnswers where a.IsRightAnswer == true select a;
 
-                            if (rightAnswers.Count() == userRightAnswers.Count())
+                            if (rightAnswers.Count() == userRightAnswers.Count() && userRightAnswers.Count() == testingForm.UserAnswers.Count())
                             {
                                 CountRightAnswers++;
                             }

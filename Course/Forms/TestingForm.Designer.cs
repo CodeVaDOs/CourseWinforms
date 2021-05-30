@@ -38,7 +38,7 @@ namespace Course.Forms
             // 
             this.test_answers_view.BackColor = System.Drawing.SystemColors.Control;
             this.test_answers_view.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.test_answers_view.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.test_answers_view.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.test_answers_view.FullRowSelect = true;
             this.test_answers_view.GridLines = true;
             this.test_answers_view.HideSelection = false;
@@ -63,6 +63,7 @@ namespace Course.Forms
             // 
             this.question_title.BackColor = System.Drawing.SystemColors.Control;
             this.question_title.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.question_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.question_title.Location = new System.Drawing.Point(12, 20);
             this.question_title.Multiline = true;
             this.question_title.Name = "question_title";
@@ -79,6 +80,7 @@ namespace Course.Forms
             this.Controls.Add(this.test_answers_view);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TestingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TestingForm";
             this.Load += new System.EventHandler(this.TestingForm_Load);
             this.ResumeLayout(false);
