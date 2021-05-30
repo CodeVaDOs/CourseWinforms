@@ -42,20 +42,22 @@ namespace Course.Forms
             this.test_answers_view.FullRowSelect = true;
             this.test_answers_view.GridLines = true;
             this.test_answers_view.HideSelection = false;
-            this.test_answers_view.Location = new System.Drawing.Point(12, 164);
+            this.test_answers_view.Location = new System.Drawing.Point(6, 85);
+            this.test_answers_view.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.test_answers_view.Name = "test_answers_view";
-            this.test_answers_view.Size = new System.Drawing.Size(701, 447);
+            this.test_answers_view.Size = new System.Drawing.Size(350, 232);
             this.test_answers_view.TabIndex = 0;
             this.test_answers_view.UseCompatibleStateImageBehavior = false;
             this.test_answers_view.View = System.Windows.Forms.View.List;
             // 
             // answer_button
             // 
-            this.answer_button.Location = new System.Drawing.Point(12, 639);
+            this.answer_button.Location = new System.Drawing.Point(6, 332);
+            this.answer_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.answer_button.Name = "answer_button";
-            this.answer_button.Size = new System.Drawing.Size(701, 106);
+            this.answer_button.Size = new System.Drawing.Size(350, 55);
             this.answer_button.TabIndex = 1;
-            this.answer_button.Text = "Answer";
+            this.answer_button.Text = "Відповісти";
             this.answer_button.UseVisualStyleBackColor = true;
             this.answer_button.Click += new System.EventHandler(this.answer_button_Click);
             // 
@@ -64,24 +66,29 @@ namespace Course.Forms
             this.question_title.BackColor = System.Drawing.SystemColors.Control;
             this.question_title.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.question_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.question_title.Location = new System.Drawing.Point(12, 20);
+            this.question_title.Location = new System.Drawing.Point(6, 10);
+            this.question_title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.question_title.Multiline = true;
             this.question_title.Name = "question_title";
-            this.question_title.Size = new System.Drawing.Size(712, 123);
+            this.question_title.Size = new System.Drawing.Size(356, 64);
             this.question_title.TabIndex = 2;
             // 
             // TestingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 757);
+            this.ClientSize = new System.Drawing.Size(362, 394);
             this.Controls.Add(this.question_title);
             this.Controls.Add(this.answer_button);
             this.Controls.Add(this.test_answers_view);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TestingForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TestingForm";
+            this.Text = "Тестування";
             this.Load += new System.EventHandler(this.TestingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

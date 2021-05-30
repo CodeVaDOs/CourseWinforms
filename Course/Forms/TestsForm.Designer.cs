@@ -54,9 +54,12 @@ namespace Course.Forms
             this.ClientSize = new System.Drawing.Size(524, 441);
             this.Controls.Add(this.tests_list_view);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TestsForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TestsForm";
+            this.Text = "Список тестів";
             this.Load += new System.EventHandler(this.TestsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tests_list_view)).EndInit();
             this.ResumeLayout(false);

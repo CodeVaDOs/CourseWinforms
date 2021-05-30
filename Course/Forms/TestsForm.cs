@@ -1,13 +1,8 @@
 ﻿using Course.Config;
 using Course.Entity;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -56,7 +51,7 @@ namespace Course.Forms
         private void tests_list_view_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            var id = (long) tests_list_view.Rows[e.RowIndex].Cells[0].Value;
+            var id = (long)tests_list_view.Rows[e.RowIndex].Cells[0].Value;
             var Test = dbContext.Tests.SingleOrDefault(t => t.ID == id);
             //var editForm = new CreateTestForm(Test);
             //editForm.Closed += (s, args) =>

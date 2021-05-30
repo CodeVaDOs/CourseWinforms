@@ -2,13 +2,6 @@
 using Course.Entity.Enum;
 using Course.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -47,19 +40,20 @@ namespace Course.Forms
             if (passwordField.Text.Length > 0)
             {
                 editedUser.Password = HashPassword.Hash(passwordField.Text);
-            } else
+            }
+            else
             {
                 editedUser.Password = user.Password;
             }
 
             editedUser.Login = loginField.Text;
-            editedUser.UserRole = (ERole) ((ComboboxItem)roleField.SelectedItem).Value;
+            editedUser.UserRole = (ERole)((ComboboxItem)roleField.SelectedItem).Value;
             editedUser.ID = user.ID;
             newUser = editedUser;
 
             DialogResult = DialogResult.OK;
             Close();
-            
+
         }
     }
 }

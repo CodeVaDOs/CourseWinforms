@@ -3,12 +3,7 @@ using Course.Entity;
 using Course.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -78,7 +73,7 @@ namespace Course.Forms
 
         private void answers_list_view_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            var item = (Answer) answers_list_view.Items[e.Index].Tag;
+            var item = (Answer)answers_list_view.Items[e.Index].Tag;
             item.IsRightAnswer = e.NewValue == CheckState.Checked;
         }
     }

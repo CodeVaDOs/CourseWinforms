@@ -1,10 +1,6 @@
 ﻿using Course.Entity;
 using Course.Entity.Enum;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Course.Config
 {
@@ -27,7 +23,7 @@ namespace Course.Config
             return lazy.Value;
         }
 
-        public void Log(EPriority priority, string message, User u=null)
+        public void Log(EPriority priority, string message, User u = null)
         {
             var log = new Log();
             log.Date = DateTime.Now;
@@ -40,12 +36,12 @@ namespace Course.Config
             dbContext.SaveChanges();
         }
 
-        public void Error(string message, User u=null)
+        public void Error(string message, User u = null)
         {
             Log(EPriority.ERROR, message, u);
         }
 
-        public void Info(string message, User u=null)
+        public void Info(string message, User u = null)
         {
             Log(EPriority.INFO, message, u);
         }

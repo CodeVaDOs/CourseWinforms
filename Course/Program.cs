@@ -1,12 +1,6 @@
-﻿using Course.Config;
-using Course.Forms;
+﻿using Course.Forms;
 using Course.Util;
-using Ninject;
-using Ninject.Modules;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course
@@ -26,7 +20,7 @@ namespace Course
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(CompositionRoot.Resolve<AuthForm>());
-        } 
+        }
 
     }
 }

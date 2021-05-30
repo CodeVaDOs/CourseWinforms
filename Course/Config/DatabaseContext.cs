@@ -1,7 +1,4 @@
 ﻿using Course.Entity;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
@@ -11,7 +8,7 @@ namespace Course.Config
     public class DatabaseContext : DbContext
     {
         string _path;
-        public DatabaseContext(string path="db.db") :
+        public DatabaseContext(string path = "db.db") :
             base(new SQLiteConnection()
             {
                 ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = path, ForeignKeys = true }.ConnectionString

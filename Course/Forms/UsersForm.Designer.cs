@@ -58,9 +58,12 @@ namespace Course.Forms
             this.ClientSize = new System.Drawing.Size(524, 441);
             this.Controls.Add(this.users_list_view);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UsersForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "UsersForm";
+            this.Text = "Список користувачів";
             this.Load += new System.EventHandler(this.UsersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.users_list_view)).EndInit();
             this.ResumeLayout(false);

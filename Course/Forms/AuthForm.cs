@@ -2,15 +2,9 @@
 using Course.Entity;
 using Course.Entity.Enum;
 using Course.Util;
-using Ninject;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -31,19 +25,20 @@ namespace Course.Forms
 
         private void AuthForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void login_button_Click(object sender, EventArgs e)
         {
-            
+
             login_button.Enabled = false;
 
 
             var user = from u in dbContext.Users where u.Login == login_field.Text select u;
 
 
-            if (!user.Any()) {
+            if (!user.Any())
+            {
                 MessageBox.Show("Логін або пароль не вірний.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 login_button.Enabled = true;
                 return;
@@ -70,7 +65,7 @@ namespace Course.Forms
             register_button.Enabled = false;
             if (login_field.Text.Count() < 4)
             {
-                MessageBox.Show("Логін повинен містити 4 або більше символів.", "Помилка!" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логін повинен містити 4 або більше символів.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 register_button.Enabled = true;
                 return;
             };
@@ -92,7 +87,7 @@ namespace Course.Forms
                 register_button.Enabled = true;
                 return;
             };
-            
+
             var newUser = new User();
             newUser.Login = login_field.Text;
             newUser.Password = HashPassword.Hash(password_field.Text);

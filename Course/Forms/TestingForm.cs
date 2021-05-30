@@ -1,12 +1,6 @@
 ﻿using Course.Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -31,7 +25,8 @@ namespace Course.Forms
                 }
                 DialogResult = DialogResult.OK;
                 Close();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Потрібно обрати хоч одну відповіть.", "Помилка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

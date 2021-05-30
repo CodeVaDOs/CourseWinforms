@@ -1,13 +1,8 @@
 ﻿using Course.Config;
 using Course.Entity;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -32,7 +27,7 @@ namespace Course.Forms
 
         private void UsersForm_Load(object sender, EventArgs e)
         {
-            Load_Table();   
+            Load_Table();
         }
 
         private void Load_Table()
@@ -67,7 +62,7 @@ namespace Course.Forms
         private void users_list_view_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            var id = (long) users_list_view.Rows[e.RowIndex].Cells[0].Value;
+            var id = (long)users_list_view.Rows[e.RowIndex].Cells[0].Value;
             var User = dbContext.Users.SingleOrDefault(u => u.ID == id);
             var editForm = new EditUserForm(User);
             editForm.Closed += (s, args) =>
@@ -81,7 +76,7 @@ namespace Course.Forms
                     dbContext.SaveChanges();
                     loggerContext.Info($"Успішне редагування користувача: {newUser.Login}");
                     MessageBox.Show($"Успішне редагування користувача: {newUser.Login}", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                     if (authContext.AuthorizedUser.ID == User.ID)
                     {
                         authContext.Authorize(User);

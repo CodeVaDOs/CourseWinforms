@@ -42,7 +42,7 @@ namespace Course.Forms
             this.add_answer.Name = "add_answer";
             this.add_answer.Size = new System.Drawing.Size(299, 49);
             this.add_answer.TabIndex = 12;
-            this.add_answer.Text = "Save";
+            this.add_answer.Text = "Зберігти";
             this.add_answer.UseVisualStyleBackColor = true;
             this.add_answer.Click += new System.EventHandler(this.add_answer_Click);
             // 
@@ -51,9 +51,9 @@ namespace Course.Forms
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Answer";
+            this.label2.Text = "Відповідь";
             // 
             // answer_field
             // 
@@ -74,9 +74,12 @@ namespace Course.Forms
             this.Controls.Add(this.answer_field);
             this.Controls.Add(this.add_answer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CreateAnswerForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CreateAnswerForm";
+            this.Text = "Створення відповіді";
             this.ResumeLayout(false);
             this.PerformLayout();
 

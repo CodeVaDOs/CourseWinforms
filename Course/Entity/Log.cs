@@ -1,11 +1,6 @@
 ﻿using Course.Entity.Enum;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Course.Entity
 {
@@ -24,6 +19,6 @@ namespace Course.Entity
         public string Message { get; set; }
 
         [Column(name: "Date", TypeName = "DATETIME")]
-        public DateTime Date {get; set;}
+        public DateTime Date { get; set; }
     }
 }

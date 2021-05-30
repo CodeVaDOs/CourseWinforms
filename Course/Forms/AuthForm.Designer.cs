@@ -46,7 +46,7 @@ namespace Course.Forms
             this.login_button.Name = "login_button";
             this.login_button.Size = new System.Drawing.Size(239, 49);
             this.login_button.TabIndex = 1;
-            this.login_button.Text = "Login";
+            this.login_button.Text = "Вхід";
             this.login_button.UseVisualStyleBackColor = true;
             this.login_button.Click += new System.EventHandler(this.login_button_Click);
             // 
@@ -69,7 +69,7 @@ namespace Course.Forms
             this.register_button.Name = "register_button";
             this.register_button.Size = new System.Drawing.Size(239, 49);
             this.register_button.TabIndex = 4;
-            this.register_button.Text = "Register";
+            this.register_button.Text = "Реєстрація";
             this.register_button.UseVisualStyleBackColor = true;
             this.register_button.Click += new System.EventHandler(this.register_button_Click);
             // 
@@ -88,18 +88,18 @@ namespace Course.Forms
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 130);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Password";
+            this.label1.Text = "Пароль";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Login";
+            this.label2.Text = "Логін";
             // 
             // label3
             // 
@@ -109,9 +109,9 @@ namespace Course.Forms
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(37, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(186, 31);
+            this.label3.Size = new System.Drawing.Size(180, 31);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Authorization";
+            this.label3.Text = "Авторизація";
             // 
             // AuthForm
             // 
@@ -126,9 +126,12 @@ namespace Course.Forms
             this.Controls.Add(this.password_field);
             this.Controls.Add(this.login_button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AuthForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AuthForm";
+            this.Text = "Авторизація";
             this.Load += new System.EventHandler(this.AuthForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -3,13 +3,8 @@ using Course.Entity;
 using Course.Entity.Enum;
 using Course.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Course.Forms
@@ -37,7 +32,7 @@ namespace Course.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            WelcomeUser.Text += $", {authContext.AuthorizedUser.Login}!";
+            WelcomeUser.Text = $"Привіт, {authContext.AuthorizedUser.Login}!";
             Show_Analytics();
             Show_Tests();
             adminToolStripMenuItem.Visible = authContext.AuthorizedUser.UserRole == ERole.Admin;
@@ -45,7 +40,7 @@ namespace Course.Forms
 
         private void create_test_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,9 +63,9 @@ namespace Course.Forms
 
         private void Show_Analytics()
         {
-            count_tests.Text = dbContext.Tests.Count().ToString();
-            count_users.Text = (from u in dbContext.Users where u.UserRole == ERole.User select u.ID).Count().ToString();
-            count_admins.Text = (from u in dbContext.Users where u.UserRole == ERole.Admin select u.ID).Count().ToString();
+            //count_tests.Text = dbContext.Tests.Count().ToString();
+            //count_users.Text = (from u in dbContext.Users where u.UserRole == ERole.User select u.ID).Count().ToString();
+            //count_admins.Text = (from u in dbContext.Users where u.UserRole == ERole.Admin select u.ID).Count().ToString();
         }
 
         private void Show_Tests()
@@ -84,7 +79,7 @@ namespace Course.Forms
                 listItem.Text = test.Name;
                 test_select_view.Items.Add(listItem);
             }
-            
+
         }
 
         private void analyticToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,7 +92,7 @@ namespace Course.Forms
             if (test_select_view.SelectedItems.Count > 0)
             {
                 Hide();
-                var test = (Test) test_select_view.SelectedItems[0].Tag;
+                var test = (Test)test_select_view.SelectedItems[0].Tag;
 
                 loggerContext.Info($"Початок проходження тестування: {test.Name}, користувачем: {authContext.AuthorizedUser.Login}. {test.Questions}");
 
@@ -118,7 +113,8 @@ namespace Course.Forms
                             {
                                 CountRightAnswers++;
                             }
-                        } else
+                        }
+                        else
                         {
                             isError = true;
                         }
@@ -133,7 +129,7 @@ namespace Course.Forms
                     result.UserID = authContext.AuthorizedUser.ID;
                     result.TestID = test.ID;
                     result.PercentOfRightAnswers = (int)(((double)CountRightAnswers / (double)test.Questions.Count()) * 100);
-
+                    result.Date = DateTime.Now;
                     dbContext.TestResults.Add(result);
                     dbContext.SaveChanges();
 
@@ -167,6 +163,31 @@ namespace Course.Forms
                 Show();
             };
             testsForm.ShowDialog();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void count_tests_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void count_users_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

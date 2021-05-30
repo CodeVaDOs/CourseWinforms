@@ -1,10 +1,5 @@
 ﻿using Course.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Course.Config
 {
@@ -26,7 +21,8 @@ namespace Course.Config
         public User AuthorizedUser { get; set; }
         public bool IsAuthorized { get; set; }
 
-        public void Authorize(User user) {
+        public void Authorize(User user)
+        {
             AuthorizedUser = user;
             IsAuthorized = true;
         }
