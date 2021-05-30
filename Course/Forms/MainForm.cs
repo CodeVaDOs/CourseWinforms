@@ -11,10 +11,9 @@ namespace Course.Forms
 {
     public partial class MainForm : Form
     {
-
-        AuthContext authContext;
-        LoggerContext loggerContext;
-        DatabaseContext dbContext;
+        private readonly AuthContext authContext;
+        private readonly LoggerContext loggerContext;
+        private readonly DatabaseContext dbContext;
         public MainForm(DatabaseContext _dbContext)
         {
 
@@ -36,6 +35,8 @@ namespace Course.Forms
             Show_Analytics();
             Show_Tests();
             adminToolStripMenuItem.Visible = authContext.AuthorizedUser.UserRole == ERole.Admin;
+
+
         }
 
         private void create_test_Click(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace Course.Forms
         private void createTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var newForm = CompositionRoot.Resolve<CreateTestForm>();
+            CreateTestForm newForm = CompositionRoot.Resolve<CreateTestForm>();
             newForm.Closed += (s, args) =>
             {
                 Show_Analytics();
@@ -63,20 +64,35 @@ namespace Course.Forms
 
         private void Show_Analytics()
         {
+            results_chart.Series.Clear();
+            results_chart.Titles.Clear();
+
+            IQueryable<TestResult> resultsWithTests = dbContext.TestResults.Include("Test").Where(tr => tr.UserID == authContext.AuthorizedUser.ID);
+
+            foreach (TestResult result in resultsWithTests)
+            {
+                System.Windows.Forms.DataVisualization.Charting.Series label = results_chart.Series.FindByName(result.Test.Name);
+                System.Windows.Forms.DataVisualization.Charting.Series series = label == null ? results_chart.Series.Add(result.Test.Name) : label;
+                series.Points.Add(result.PercentOfRightAnswers);
+            }
+
             //count_tests.Text = dbContext.Tests.Count().ToString();
             //count_users.Text = (from u in dbContext.Users where u.UserRole == ERole.User select u.ID).Count().ToString();
+
             //count_admins.Text = (from u in dbContext.Users where u.UserRole == ERole.Admin select u.ID).Count().ToString();
         }
 
         private void Show_Tests()
         {
-            var tests = dbContext.Tests.Include("Questions.Answers");
+            System.Data.Entity.Infrastructure.DbQuery<Test> tests = dbContext.Tests.Include("Questions.Answers");
             test_select_view.Items.Clear();
             foreach (Test test in tests)
             {
-                var listItem = new ListViewItem();
-                listItem.Tag = test;
-                listItem.Text = test.Name;
+                ListViewItem listItem = new ListViewItem
+                {
+                    Tag = test,
+                    Text = test.Name
+                };
                 test_select_view.Items.Add(listItem);
             }
 
@@ -84,7 +100,13 @@ namespace Course.Forms
 
         private void analyticToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            StatysticForm analyticForm = CompositionRoot.Resolve<StatysticForm>();
+            analyticForm.Closed += (s, args) =>
+            {
+                Show();
+            };
+            analyticForm.ShowDialog();
         }
 
         private void test_select_button_Click(object sender, EventArgs e)
@@ -92,7 +114,7 @@ namespace Course.Forms
             if (test_select_view.SelectedItems.Count > 0)
             {
                 Hide();
-                var test = (Test)test_select_view.SelectedItems[0].Tag;
+                Test test = (Test)test_select_view.SelectedItems[0].Tag;
 
                 loggerContext.Info($"Початок проходження тестування: {test.Name}, користувачем: {authContext.AuthorizedUser.Login}. {test.Questions}");
 
@@ -101,13 +123,13 @@ namespace Course.Forms
 
                 foreach (Question q in test.Questions)
                 {
-                    var testingForm = new TestingForm(q);
+                    TestingForm testingForm = new TestingForm(q);
                     testingForm.Closed += (s, args) =>
                     {
                         if (testingForm.DialogResult == DialogResult.OK)
                         {
-                            var rightAnswers = from a in q.Answers where a.IsRightAnswer == true select a;
-                            var userRightAnswers = from a in testingForm.UserAnswers where a.IsRightAnswer == true select a;
+                            System.Collections.Generic.IEnumerable<Answer> rightAnswers = from a in q.Answers where a.IsRightAnswer == true select a;
+                            System.Collections.Generic.IEnumerable<Answer> userRightAnswers = from a in testingForm.UserAnswers where a.IsRightAnswer == true select a;
 
                             if (rightAnswers.Count() == userRightAnswers.Count() && userRightAnswers.Count() == testingForm.UserAnswers.Count())
                             {
@@ -120,23 +142,28 @@ namespace Course.Forms
                         }
                     };
                     testingForm.ShowDialog();
-                    if (isError) break;
+                    if (isError)
+                    {
+                        break;
+                    }
                 }
 
                 if (!isError)
                 {
-                    var result = new TestResult();
-                    result.UserID = authContext.AuthorizedUser.ID;
-                    result.TestID = test.ID;
-                    result.PercentOfRightAnswers = (int)(((double)CountRightAnswers / (double)test.Questions.Count()) * 100);
-                    result.Date = DateTime.Now;
+                    TestResult result = new TestResult
+                    {
+                        UserID = authContext.AuthorizedUser.ID,
+                        TestID = test.ID,
+                        PercentOfRightAnswers = (int)((CountRightAnswers / (double)test.Questions.Count()) * 100),
+                        Date = DateTime.Now
+                    };
                     dbContext.TestResults.Add(result);
                     dbContext.SaveChanges();
 
                     loggerContext.Info($"Закінчення проходження тестування: {test.Name}, користувачем: {authContext.AuthorizedUser.Login}. Правильних відповідей: {result.PercentOfRightAnswers}%");
                     MessageBox.Show($"Результат проходження тестування: {result.PercentOfRightAnswers}%", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
+                MainForm_Load(sender, e);
                 Show();
             }
         }
@@ -144,7 +171,7 @@ namespace Course.Forms
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var usersForm = CompositionRoot.Resolve<UsersForm>();
+            UsersForm usersForm = CompositionRoot.Resolve<UsersForm>();
             usersForm.Closed += (s, args) =>
             {
                 MainForm_Load(sender, e);
@@ -156,7 +183,7 @@ namespace Course.Forms
         private void testsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var testsForm = CompositionRoot.Resolve<TestsForm>();
+            TestsForm testsForm = CompositionRoot.Resolve<TestsForm>();
             testsForm.Closed += (s, args) =>
             {
                 MainForm_Load(sender, e);
@@ -186,6 +213,11 @@ namespace Course.Forms
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void results_chart_Click(object sender, EventArgs e)
         {
 
         }

@@ -7,7 +7,7 @@ namespace Course.Config
 {
     public class DatabaseContext : DbContext
     {
-        string _path;
+        private readonly string _path;
         public DatabaseContext(string path = "db.db") :
             base(new SQLiteConnection()
             {

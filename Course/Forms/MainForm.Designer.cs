@@ -29,6 +29,8 @@ namespace Course.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.WelcomeUser = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +41,10 @@ namespace Course.Forms
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.test_select_button = new System.Windows.Forms.Button();
             this.test_select_view = new System.Windows.Forms.ListView();
+            this.results_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.results_chart)).BeginInit();
             this.SuspendLayout();
             // 
             // WelcomeUser
@@ -116,17 +121,23 @@ namespace Course.Forms
             // 
             // test_select_button
             // 
+            this.test_select_button.BackColor = System.Drawing.Color.White;
+            this.test_select_button.FlatAppearance.BorderColor = System.Drawing.SystemColors.WindowFrame;
+            this.test_select_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.test_select_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.test_select_button.Location = new System.Drawing.Point(346, 328);
             this.test_select_button.Margin = new System.Windows.Forms.Padding(2);
             this.test_select_button.Name = "test_select_button";
-            this.test_select_button.Size = new System.Drawing.Size(240, 45);
+            this.test_select_button.Size = new System.Drawing.Size(242, 45);
             this.test_select_button.TabIndex = 11;
             this.test_select_button.Text = "Розпочати тестування";
-            this.test_select_button.UseVisualStyleBackColor = true;
+            this.test_select_button.UseVisualStyleBackColor = false;
             this.test_select_button.Click += new System.EventHandler(this.test_select_button_Click);
             // 
             // test_select_view
             // 
+            this.test_select_view.BackColor = System.Drawing.SystemColors.Window;
+            this.test_select_view.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.test_select_view.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.test_select_view.FullRowSelect = true;
             this.test_select_view.GridLines = true;
@@ -139,11 +150,40 @@ namespace Course.Forms
             this.test_select_view.UseCompatibleStateImageBehavior = false;
             this.test_select_view.View = System.Windows.Forms.View.List;
             // 
+            // results_chart
+            // 
+            this.results_chart.BackColor = System.Drawing.SystemColors.Control;
+            this.results_chart.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
+            this.results_chart.BorderlineColor = System.Drawing.SystemColors.WindowFrame;
+            this.results_chart.BorderSkin.PageColor = System.Drawing.SystemColors.Control;
+            chartArea1.Name = "ChartArea1";
+            this.results_chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.results_chart.Legends.Add(legend1);
+            this.results_chart.Location = new System.Drawing.Point(17, 148);
+            this.results_chart.Name = "results_chart";
+            this.results_chart.Size = new System.Drawing.Size(315, 225);
+            this.results_chart.TabIndex = 13;
+            this.results_chart.Text = "chart1";
+            this.results_chart.Click += new System.EventHandler(this.results_chart_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 125);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Результати:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 379);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.results_chart);
             this.Controls.Add(this.test_select_view);
             this.Controls.Add(this.test_select_button);
             this.Controls.Add(this.WelcomeUser);
@@ -158,6 +198,7 @@ namespace Course.Forms
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.results_chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +215,7 @@ namespace Course.Forms
         private System.Windows.Forms.ListView test_select_view;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testsToolStripMenuItem;
+        private System.Windows.Forms.DataVisualization.Charting.Chart results_chart;
+        private System.Windows.Forms.Label label1;
     }
 }

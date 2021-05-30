@@ -48,7 +48,7 @@ namespace Course.Forms
             this.login_button.TabIndex = 1;
             this.login_button.Text = "Вхід";
             this.login_button.UseVisualStyleBackColor = true;
-            this.login_button.Click += new System.EventHandler(this.login_button_Click);
+            this.login_button.Click += new System.EventHandler(this.Login_button_Click);
             // 
             // password_field
             // 

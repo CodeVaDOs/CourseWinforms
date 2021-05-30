@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace Course.Config
 {
-    class SqliteContextInitializer<T> : IDatabaseInitializer<T>
+    internal class SqliteContextInitializer<T> : IDatabaseInitializer<T>
         where T : DbContext
     {
-        bool _dbExists;
-        DbModelBuilder _modelBuilder;
+        private readonly bool _dbExists;
+        private readonly DbModelBuilder _modelBuilder;
 
         public SqliteContextInitializer(string dbPath, DbModelBuilder modelBuilder)
         {
@@ -23,11 +23,13 @@ namespace Course.Config
         public void InitializeDatabase(T context)
         {
             if (_dbExists)
+            {
                 return;
+            }
 
-            var model = _modelBuilder.Build(context.Database.Connection);
+            DbModel model = _modelBuilder.Build(context.Database.Connection);
 
-            using (var xact = context.Database.BeginTransaction())
+            using (DbContextTransaction xact = context.Database.BeginTransaction())
             {
                 try
                 {
@@ -42,7 +44,7 @@ namespace Course.Config
             }
         }
 
-        class Index
+        private class Index
         {
             public string Name { get; set; }
             public string Table { get; set; }
@@ -57,33 +59,39 @@ namespace Course.Config
             const string foreignKeyTmpl = "    FOREIGN KEY ({0}) REFERENCES {1} ({2})";
             const string indexTmpl = "CREATE INDEX {0} ON {1} ({2});";
 
-            var indicies = new Dictionary<string, Index>();
+            Dictionary<string, Index> indicies = new Dictionary<string, Index>();
 
-            foreach (var type in model.StoreModel.EntityTypes)
+            foreach (System.Data.Entity.Core.Metadata.Edm.EntityType type in model.StoreModel.EntityTypes)
             {
-                var defs = new List<string>();
+                List<string> defs = new List<string>();
 
                 // columns
-                foreach (var p in type.Properties)
+                foreach (System.Data.Entity.Core.Metadata.Edm.EdmProperty p in type.Properties)
                 {
-                    var decls = new HashSet<string>();
+                    HashSet<string> decls = new HashSet<string>();
 
                     if (!p.Nullable)
+                    {
                         decls.Add("NOT NULL");
+                    }
 
-                    var annotations = p.MetadataProperties
+                    IEnumerable<IndexAnnotation> annotations = p.MetadataProperties
                         .Select(x => x.Value)
                         .OfType<IndexAnnotation>();
 
-                    foreach (var annotation in annotations)
+                    foreach (IndexAnnotation annotation in annotations)
                     {
-                        foreach (var attr in annotation.Indexes)
+                        foreach (System.ComponentModel.DataAnnotations.Schema.IndexAttribute attr in annotation.Indexes)
                         {
                             if (attr.IsUnique)
+                            {
                                 decls.Add("UNIQUE");
+                            }
 
                             if (string.IsNullOrEmpty(attr.Name))
+                            {
                                 continue;
+                            }
 
                             Index index;
                             if (!indicies.TryGetValue(attr.Name, out index))
@@ -106,17 +114,17 @@ namespace Course.Config
                 // primary keys
                 if (type.KeyProperties.Any())
                 {
-                    var keys = type.KeyProperties.Select(x => x.Name);
+                    IEnumerable<string> keys = type.KeyProperties.Select(x => x.Name);
                     defs.Add(string.Format(primaryKeyTmpl, string.Join(", ", keys)));
                 }
 
                 // foreign keys
-                foreach (var assoc in model.StoreModel.AssociationTypes)
+                foreach (System.Data.Entity.Core.Metadata.Edm.AssociationType assoc in model.StoreModel.AssociationTypes)
                 {
                     if (assoc.Constraint.ToRole.Name == type.Name)
                     {
-                        var thisKeys = assoc.Constraint.ToProperties.Select(x => x.Name);
-                        var thatKeys = assoc.Constraint.FromProperties.Select(x => x.Name);
+                        IEnumerable<string> thisKeys = assoc.Constraint.ToProperties.Select(x => x.Name);
+                        IEnumerable<string> thatKeys = assoc.Constraint.FromProperties.Select(x => x.Name);
                         defs.Add(string.Format(foreignKeyTmpl,
                             string.Join(", ", thisKeys),
                             assoc.Constraint.FromRole.Name,
@@ -125,15 +133,15 @@ namespace Course.Config
                 }
 
                 // create table
-                var sql = string.Format(tableTmpl, type.Name, string.Join(",\n", defs));
+                string sql = string.Format(tableTmpl, type.Name, string.Join(",\n", defs));
                 db.ExecuteSqlCommand(sql);
             }
 
             // create index
-            foreach (var index in indicies.Values)
+            foreach (Index index in indicies.Values)
             {
-                var columns = string.Join(", ", index.Columns);
-                var sql = string.Format(indexTmpl, index.Name, index.Table, columns);
+                string columns = string.Join(", ", index.Columns);
+                string sql = string.Format(indexTmpl, index.Name, index.Table, columns);
                 db.ExecuteSqlCommand(sql);
             }
         }

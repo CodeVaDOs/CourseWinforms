@@ -9,9 +9,9 @@ namespace Course.Forms
 {
     public partial class UsersForm : Form
     {
-        DatabaseContext dbContext;
-        LoggerContext loggerContext;
-        AuthContext authContext;
+        private readonly DatabaseContext dbContext;
+        private readonly LoggerContext loggerContext;
+        private readonly AuthContext authContext;
         public UsersForm(DatabaseContext _dbContext)
         {
             dbContext = _dbContext;
@@ -32,11 +32,11 @@ namespace Course.Forms
 
         private void Load_Table()
         {
-            var dataTable = new DataTable();
-            var idCol = dataTable.Columns.Add("ID", typeof(long));
-            var loginCol = dataTable.Columns.Add("Login", typeof(string));
-            var passCol = dataTable.Columns.Add("Password", typeof(string));
-            var roleCol = dataTable.Columns.Add("Role", typeof(Int32));
+            DataTable dataTable = new DataTable();
+            DataColumn idCol = dataTable.Columns.Add("ID", typeof(long));
+            DataColumn loginCol = dataTable.Columns.Add("Login", typeof(string));
+            DataColumn passCol = dataTable.Columns.Add("Password", typeof(string));
+            DataColumn roleCol = dataTable.Columns.Add("Role", typeof(int));
 
             idCol.Unique = true;
             loginCol.AllowDBNull = false;
@@ -44,32 +44,36 @@ namespace Course.Forms
             roleCol.AllowDBNull = false;
             loginCol.Unique = true;
 
-            var Users = dbContext.Users;
+            System.Data.Entity.DbSet<User> Users = dbContext.Users;
 
             foreach (User user in Users)
             {
-                var row = dataTable.NewRow();
+                DataRow row = dataTable.NewRow();
                 row["ID"] = user.ID;
                 row["Login"] = user.Login;
                 row["Password"] = "****";
                 row["Role"] = user.UserRole;
                 dataTable.Rows.Add(row);
             }
-            var view = new DataView(dataTable);
+            DataView view = new DataView(dataTable);
             users_list_view.DataSource = view;
         }
 
         private void users_list_view_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
-            var id = (long)users_list_view.Rows[e.RowIndex].Cells[0].Value;
-            var User = dbContext.Users.SingleOrDefault(u => u.ID == id);
-            var editForm = new EditUserForm(User);
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            long id = (long)users_list_view.Rows[e.RowIndex].Cells[0].Value;
+            User User = dbContext.Users.SingleOrDefault(u => u.ID == id);
+            EditUserForm editForm = new EditUserForm(User);
             editForm.Closed += (s, args) =>
             {
                 if (editForm.DialogResult == DialogResult.OK)
                 {
-                    var newUser = editForm.newUser;
+                    User newUser = editForm.newUser;
                     User.Login = newUser.Login;
                     User.Password = newUser.Password;
                     User.UserRole = newUser.UserRole;

@@ -11,9 +11,9 @@ namespace Course.Forms
 {
     public partial class AuthForm : Form
     {
-        AuthContext authContext;
-        DatabaseContext dbContext;
-        LoggerContext loggerContext;
+        private readonly AuthContext authContext;
+        private readonly DatabaseContext dbContext;
+        private readonly LoggerContext loggerContext;
 
         public AuthForm(DatabaseContext _dbContext)
         {
@@ -28,13 +28,13 @@ namespace Course.Forms
 
         }
 
-        private void login_button_Click(object sender, EventArgs e)
+        private void Login_button_Click(object sender, EventArgs e)
         {
 
             login_button.Enabled = false;
 
 
-            var user = from u in dbContext.Users where u.Login == login_field.Text select u;
+            IQueryable<User> user = from u in dbContext.Users where u.Login == login_field.Text select u;
 
 
             if (!user.Any())
@@ -78,7 +78,7 @@ namespace Course.Forms
             };
 
 
-            var user = from u in dbContext.Users where u.Login == login_field.Text select u;
+            IQueryable<User> user = from u in dbContext.Users where u.Login == login_field.Text select u;
 
 
             if (user.Any())
@@ -88,15 +88,17 @@ namespace Course.Forms
                 return;
             };
 
-            var newUser = new User();
-            newUser.Login = login_field.Text;
-            newUser.Password = HashPassword.Hash(password_field.Text);
-            newUser.UserRole = ERole.User;
+            User newUser = new User
+            {
+                Login = login_field.Text,
+                Password = HashPassword.Hash(password_field.Text),
+                UserRole = ERole.User
+            };
 
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
 
-            var createdUser = dbContext.Users.SingleOrDefault(u => u.Login == newUser.Login);
+            User createdUser = dbContext.Users.SingleOrDefault(u => u.Login == newUser.Login);
 
             if (createdUser.ID == 1)
             {
@@ -110,7 +112,7 @@ namespace Course.Forms
             MessageBox.Show("Ви успішно зареєструвалися.", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             register_button.Enabled = true;
 
-            login_button_Click(sender, e);
+            Login_button_Click(sender, e);
         }
 
     }

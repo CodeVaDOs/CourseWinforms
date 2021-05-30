@@ -6,8 +6,8 @@ namespace Course.Config
 {
     public class LoggerContext
     {
-        private AuthContext authContext;
-        private DatabaseContext dbContext;
+        private readonly AuthContext authContext;
+        private readonly DatabaseContext dbContext;
 
         public LoggerContext()
         {
@@ -25,11 +25,13 @@ namespace Course.Config
 
         public void Log(EPriority priority, string message, User u = null)
         {
-            var log = new Log();
-            log.Date = DateTime.Now;
-            log.Message = message;
-            log.Priority = priority;
-            log.UserID = u != null ? u.ID : (authContext.IsAuthorized ? authContext.AuthorizedUser.ID : 0);
+            Log log = new Log
+            {
+                Date = DateTime.Now,
+                Message = message,
+                Priority = priority,
+                UserID = u != null ? u.ID : (authContext.IsAuthorized ? authContext.AuthorizedUser.ID : 0)
+            };
             Console.WriteLine("AUTH ID");
             Console.WriteLine(authContext.AuthorizedUser.ID);
             dbContext.Logs.Add(log);

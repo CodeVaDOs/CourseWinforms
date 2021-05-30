@@ -33,9 +33,12 @@ namespace Course.Forms
 
         private void save_button_Click(object sender, EventArgs e)
         {
-            if (loginField.Text.Length == 0) return;
+            if (loginField.Text.Length == 0)
+            {
+                return;
+            }
 
-            var editedUser = new User();
+            User editedUser = new User();
 
             if (passwordField.Text.Length > 0)
             {

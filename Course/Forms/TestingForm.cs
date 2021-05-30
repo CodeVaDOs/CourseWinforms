@@ -8,7 +8,7 @@ namespace Course.Forms
     public partial class TestingForm : Form
     {
         public ICollection<Answer> UserAnswers = new List<Answer>();
-        Question question;
+        private readonly Question question;
         public TestingForm(Question _question)
         {
             question = _question;
@@ -37,9 +37,11 @@ namespace Course.Forms
             question_title.Text = question.Body;
             foreach (Answer answer in question.Answers)
             {
-                var itemList = new ListViewItem();
-                itemList.Text = answer.Body;
-                itemList.Tag = answer;
+                ListViewItem itemList = new ListViewItem
+                {
+                    Text = answer.Body,
+                    Tag = answer
+                };
                 test_answers_view.Items.Add(itemList);
                 test_answers_view.CheckBoxes = true;
             }

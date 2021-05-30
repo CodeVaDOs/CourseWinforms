@@ -5,7 +5,7 @@ using System.Data.SQLite.EF6;
 
 namespace Course.Config
 {
-    class SQLiteConfiguration : DbConfiguration
+    internal class SQLiteConfiguration : DbConfiguration
     {
         public SQLiteConfiguration()
         {

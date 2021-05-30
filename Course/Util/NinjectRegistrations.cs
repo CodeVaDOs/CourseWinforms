@@ -4,9 +4,9 @@ using Ninject.Modules;
 
 namespace Course.Util
 {
-    class NinjectRegistrations : NinjectModule
+    internal class NinjectRegistrations : NinjectModule
     {
-        private IKernel _ninjectKernel;
+        private readonly IKernel _ninjectKernel;
 
         public NinjectRegistrations()
         {

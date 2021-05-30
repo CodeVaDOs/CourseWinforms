@@ -12,8 +12,8 @@ namespace Course.Forms
         public ICollection<Question> Questions = new List<Question>();
         public string TestName { get; set; }
 
-        DatabaseContext dbContext;
-        LoggerContext logger;
+        private readonly DatabaseContext dbContext;
+        private readonly LoggerContext logger;
 
         public CreateTestForm(DatabaseContext _dbContext)
         {
@@ -25,19 +25,23 @@ namespace Course.Forms
         private void add_question_button_Click(object sender, EventArgs e)
         {
             Hide();
-            var newForm = CompositionRoot.Resolve<CreateQuestionForm>();
+            CreateQuestionForm newForm = CompositionRoot.Resolve<CreateQuestionForm>();
             newForm.Closed += (s, args) => Show();
-            var result = newForm.ShowDialog();
+            DialogResult result = newForm.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                var question = new Question();
-                question.Answers = newForm.Answers;
-                question.Body = newForm.Question;
+                Question question = new Question
+                {
+                    Answers = newForm.Answers,
+                    Body = newForm.Question
+                };
                 Questions.Add(question);
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = question.Body;
-                lvi.Tag = question;
+                ListViewItem lvi = new ListViewItem
+                {
+                    Text = question.Body,
+                    Tag = question
+                };
                 questions_list_view.Items.Add(lvi);
                 newForm.Close();
             }
@@ -48,9 +52,11 @@ namespace Course.Forms
             if (test_name_field.Text.Length > 0)
             {
                 TestName = test_name_field.Text;
-                var test = new Test();
-                test.Name = TestName;
-                test.Questions = Questions;
+                Test test = new Test
+                {
+                    Name = TestName,
+                    Questions = Questions
+                };
 
                 dbContext.Tests.Add(test);
 
