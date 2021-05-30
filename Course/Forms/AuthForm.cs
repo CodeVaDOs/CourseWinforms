@@ -23,10 +23,6 @@ namespace Course.Forms
             InitializeComponent();
         }
 
-        private void AuthForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void Login_button_Click(object sender, EventArgs e)
         {
@@ -114,6 +110,5 @@ namespace Course.Forms
 
             Login_button_Click(sender, e);
         }
-
     }
 }

@@ -44,7 +44,6 @@ namespace Course.Forms
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Запитання";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // question_field
             // 
@@ -55,7 +54,6 @@ namespace Course.Forms
             this.question_field.Name = "question_field";
             this.question_field.Size = new System.Drawing.Size(299, 38);
             this.question_field.TabIndex = 8;
-            this.question_field.TextChanged += new System.EventHandler(this.login_field_TextChanged);
             // 
             // save_question_button
             // 
@@ -95,7 +93,6 @@ namespace Course.Forms
             this.answers_list_view.UseCompatibleStateImageBehavior = false;
             this.answers_list_view.View = System.Windows.Forms.View.List;
             this.answers_list_view.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.answers_list_view_ItemCheck);
-            this.answers_list_view.SelectedIndexChanged += new System.EventHandler(this.answers_list_view_SelectedIndexChanged);
             // 
             // CreateQuestionForm
             // 

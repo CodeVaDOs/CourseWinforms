@@ -132,7 +132,6 @@ namespace Course.Forms
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизація";
-            this.Load += new System.EventHandler(this.AuthForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

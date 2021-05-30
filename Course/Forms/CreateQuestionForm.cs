@@ -20,16 +20,6 @@ namespace Course.Forms
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_field_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void save_question_button_Click(object sender, EventArgs e)
         {
@@ -63,11 +53,6 @@ namespace Course.Forms
                 };
                 answers_list_view.Items.Add(lvi);
             }
-        }
-
-        private void answers_list_view_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void CreateQuestionForm_Load(object sender, EventArgs e)

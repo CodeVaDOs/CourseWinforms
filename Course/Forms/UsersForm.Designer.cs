@@ -48,7 +48,6 @@ namespace Course.Forms
             this.users_list_view.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.users_list_view.Size = new System.Drawing.Size(524, 441);
             this.users_list_view.TabIndex = 0;
-            this.users_list_view.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.users_list_view.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_list_view_CellDoubleClick);
             // 
             // UsersForm

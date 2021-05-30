@@ -9,7 +9,6 @@ namespace Course.Forms
         public CreateAnswerForm()
         {
             InitializeComponent();
-
         }
 
         private void add_answer_Click(object sender, EventArgs e)

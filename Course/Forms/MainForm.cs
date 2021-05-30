@@ -24,10 +24,6 @@ namespace Course.Forms
             InitializeComponent();
         }
 
-        private void WelcomeUser_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -39,15 +35,6 @@ namespace Course.Forms
 
         }
 
-        private void create_test_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void createTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -76,10 +63,6 @@ namespace Course.Forms
                 series.Points.Add(result.PercentOfRightAnswers);
             }
 
-            //count_tests.Text = dbContext.Tests.Count().ToString();
-            //count_users.Text = (from u in dbContext.Users where u.UserRole == ERole.User select u.ID).Count().ToString();
-
-            //count_admins.Text = (from u in dbContext.Users where u.UserRole == ERole.Admin select u.ID).Count().ToString();
         }
 
         private void Show_Tests()
@@ -192,34 +175,24 @@ namespace Course.Forms
             testsForm.ShowDialog();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void count_tests_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void count_users_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void results_chart_Click(object sender, EventArgs e)
-        {
-
+            Hide();
+            User User = dbContext.Users.SingleOrDefault(u => u.ID == authContext.AuthorizedUser.ID);
+            EditUserForm editUserForm = new EditUserForm(User, false, false);
+            editUserForm.Closed += (s, args) =>
+            {
+                if (editUserForm.DialogResult == DialogResult.OK)
+                {
+                    User newUser = editUserForm.newUser;
+                    User.Password = newUser.Password;
+                    dbContext.SaveChanges();
+                    loggerContext.Info($"Успішне редагування користувача: {newUser.Login}");
+                    MessageBox.Show($"Успішне редагування!", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                Show();
+            };
+            editUserForm.ShowDialog();
         }
     }
 }

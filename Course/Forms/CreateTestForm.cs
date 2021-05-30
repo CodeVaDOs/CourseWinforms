@@ -65,10 +65,5 @@ namespace Course.Forms
                 Close();
             }
         }
-
-        private void questions_list_view_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

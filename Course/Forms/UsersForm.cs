@@ -20,11 +20,6 @@ namespace Course.Forms
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void UsersForm_Load(object sender, EventArgs e)
         {
             Load_Table();

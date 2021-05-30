@@ -10,14 +10,21 @@ namespace Course.Forms
     {
         public User user { get; set; }
         public User newUser { get; set; }
-        public EditUserForm(User _user)
+        public bool EditLoginField { get; set; }
+        public bool EditRoleField { get; set; }
+        public EditUserForm(User _user, bool editLoginField = true, bool editRoleField = true)
         {
             user = _user;
+            EditLoginField = editLoginField;
+            EditRoleField = editRoleField;
             InitializeComponent();
         }
 
         private void Init()
         {
+            loginField.Enabled = EditLoginField;
+            roleField.Enabled = EditRoleField;
+
             loginField.Text = user.Login;
             passwordField.Text = "";
 

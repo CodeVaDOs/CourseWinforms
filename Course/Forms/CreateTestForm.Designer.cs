@@ -67,7 +67,6 @@ namespace Course.Forms
             this.questions_list_view.TabIndex = 12;
             this.questions_list_view.UseCompatibleStateImageBehavior = false;
             this.questions_list_view.View = System.Windows.Forms.View.List;
-            this.questions_list_view.SelectedIndexChanged += new System.EventHandler(this.questions_list_view_SelectedIndexChanged);
             // 
             // add_question_button
             // 

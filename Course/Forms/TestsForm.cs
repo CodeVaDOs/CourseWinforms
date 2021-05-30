@@ -57,28 +57,6 @@ namespace Course.Forms
 
             long id = (long)tests_list_view.Rows[e.RowIndex].Cells[0].Value;
             Test Test = dbContext.Tests.SingleOrDefault(t => t.ID == id);
-            //var editForm = new CreateTestForm(Test);
-            //editForm.Closed += (s, args) =>
-            //{
-            //    if (editForm.DialogResult == DialogResult.OK)
-            //    {
-            //        var newTest = editForm.newUser;
-            //        User.Login = newUser.Login;
-            //        User.Password = newUser.Password;
-            //        User.UserRole = newUser.UserRole;
-            //        dbContext.SaveChanges();
-            //        loggerContext.Info($"Успішне редагування користувача: {newUser.Login}");
-            //        MessageBox.Show($"Успішне редагування користувача: {newUser.Login}", "Успіх!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        if (authContext.AuthorizedUser.ID == User.ID)
-            //        {
-            //            authContext.Authorize(User);
-            //        }
-
-            //        Load_Table();
-            //    }
-            //};
-            //editForm.ShowDialog();
         }
     }
 }

@@ -29,8 +29,8 @@ namespace Course.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.WelcomeUser = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +43,7 @@ namespace Course.Forms
             this.test_select_view = new System.Windows.Forms.ListView();
             this.results_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.results_chart)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +57,6 @@ namespace Course.Forms
             this.WelcomeUser.Size = new System.Drawing.Size(122, 24);
             this.WelcomeUser.TabIndex = 1;
             this.WelcomeUser.Text = "Привіт, user!";
-            this.WelcomeUser.Click += new System.EventHandler(this.WelcomeUser_Click);
             // 
             // menuStrip1
             // 
@@ -82,42 +82,42 @@ namespace Course.Forms
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.adminToolStripMenuItem.Text = "Меню адміністратора";
             this.adminToolStripMenuItem.Visible = false;
-            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // createTestToolStripMenuItem
             // 
             this.createTestToolStripMenuItem.Name = "createTestToolStripMenuItem";
-            this.createTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createTestToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.createTestToolStripMenuItem.Text = "Створити тест";
             this.createTestToolStripMenuItem.Click += new System.EventHandler(this.createTestToolStripMenuItem_Click);
             // 
             // analyticToolStripMenuItem
             // 
             this.analyticToolStripMenuItem.Name = "analyticToolStripMenuItem";
-            this.analyticToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.analyticToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.analyticToolStripMenuItem.Text = "Статистика";
             this.analyticToolStripMenuItem.Click += new System.EventHandler(this.analyticToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.usersToolStripMenuItem.Text = "Користувачі";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // testsToolStripMenuItem
             // 
             this.testsToolStripMenuItem.Name = "testsToolStripMenuItem";
-            this.testsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.testsToolStripMenuItem.Text = "Тести";
             this.testsToolStripMenuItem.Click += new System.EventHandler(this.testsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
-            this.helpToolStripMenuItem.Text = "Довідка";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.helpToolStripMenuItem.Text = "Обліковий запиc";
             // 
             // test_select_button
             // 
@@ -156,16 +156,15 @@ namespace Course.Forms
             this.results_chart.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.Cross;
             this.results_chart.BorderlineColor = System.Drawing.SystemColors.WindowFrame;
             this.results_chart.BorderSkin.PageColor = System.Drawing.SystemColors.Control;
-            chartArea1.Name = "ChartArea1";
-            this.results_chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.results_chart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.results_chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.results_chart.Legends.Add(legend2);
             this.results_chart.Location = new System.Drawing.Point(17, 148);
             this.results_chart.Name = "results_chart";
             this.results_chart.Size = new System.Drawing.Size(315, 225);
             this.results_chart.TabIndex = 13;
             this.results_chart.Text = "chart1";
-            this.results_chart.Click += new System.EventHandler(this.results_chart_Click);
             // 
             // label1
             // 
@@ -176,6 +175,13 @@ namespace Course.Forms
             this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 14;
             this.label1.Text = "Результати:";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Редагування";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -217,5 +223,6 @@ namespace Course.Forms
         private System.Windows.Forms.ToolStripMenuItem testsToolStripMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart results_chart;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
     }
 }
